@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 
 import './App.css'
 
-import PostCardContainer from './components/postCardContainer/postCardContainer'
+import ReportCardContainer from './components/reportCardContainer/reportCardContainer'
 
 const queryClient = new QueryClient()
 
@@ -15,10 +15,10 @@ const App: React.FC = () => {
           <div className="container px-5 py-5 mx-auto">
             <div className="flex flex-col text-center w-full mb-10">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mt-10">
-                All Posts
+                Search Reports
               </h1>
             </div>
-            <PostCardContainer />
+            <ReportCardContainer />
           </div>
         </section>
       </div>
