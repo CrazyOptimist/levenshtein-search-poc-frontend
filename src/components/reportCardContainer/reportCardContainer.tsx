@@ -1,22 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as data from './data.json'
 
 import ReportCard, { TReportCard } from '../reportCard/reportCard'
-
-export type TReportCardExtended = TReportCard & {
-  nameLeven?: number
-  categoryLeven?: number
-  keywordsLeven?: number
-}
+import Search from '../search/search.component'
+import { levenSearch } from '../../common/helper'
 
 const ReportCardContainer: React.FC = () => {
-  const reports = data.reports as TReportCard[]
+  const allReports = data.reports as TReportCard[]
+  const [reports, setReports] = useState(allReports)
+  const onQueryChange = (query: string) => setReports(levenSearch(10, query, allReports))
 
   return (
-    <div className="flex flex-wrap -m-4">
-      {reports &&
-        reports.map((item: TReportCardExtended) => <ReportCard key={item.id} {...item} />)}
-    </div>
+    <>
+      <Search onChange={onQueryChange} />
+      <div className="flex flex-wrap -m-4">
+        {reports && reports.map((item: TReportCard) => <ReportCard key={item.id} {...item} />)}
+      </div>
+    </>
   )
 }
 
